@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+:root {
+  --MenuColorButton: rgb(37, 37, 37);
+  --MenuColorMenu: #373737;
+  --MenuColorFont: #a2a2a2;
+  --MenuFontSize: 16px;
+  --MenuSizeButton: 50px;
+  --MenuSizeWidthCard: 70px;
+  --MenuSizeHeightCard: 60px;
+  --MenuHeightMenu: 150px;
+  --MenuGapMenu: 20px;
+  --MenuWidthMenu: calc(var(--MenuSizeWidthCard) * 3+ var(--MenuGapMenu) * 2);
+}
+
+body {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-size: var(--MenuFontSize);
+  font-family: "Lato", sans-serif;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+.menu_float {
+  position: absolute;
+  top: 50%;
+  right: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.menu_float__icon {
+  width: var(--MenuSizeButton);
+  height: var(--MenuSizeButton);
+  background-color: var(--MenuColorButton);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: white;
+  z-index: 4;
+  top: 0;
+  right: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: all 0.3s;
+  background-image: url("img/simbolo_blanco.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 15px;
+}
+
+.menu_float__icon.menu_active {
+  background-image: url("img/point.svg");
+  background-size: 5px;
+}
+
+.menu_float__icon img {
+  max-width: calc(var(--MenuSizeButton));
+  height: calc(var(--MenuSizeButton) - 20px);
+}
+
+.menu_float__icon:hover {
+  font-size: 1.8rem;
+  transform: scale(0.8);
+}
+
+.menu_float__menu {
+  width: var(--MenuWidthMenu);
+  background-color: var(--MenuColorMenu);
+  right: calc(var(--MenuSizeButton) / 2);
+  color: var(--MenuColorFont) !important;
+  position: absolute;
+  z-index: 4;
+  border-radius: 10px;
+  background: rgb(55, 55, 55);
+  background: linear-gradient(
+    180deg,
+    rgba(55, 55, 55, 1) 0%,
+    rgba(55, 55, 55, 0.8) 70%,
+    rgba(55, 55, 55, 0.74) 100%
+  );
+}
+
+.menu_float__icon.fade_out,
+.menu_float__menu.fade_out {
+  display: none;
+}
+
+.menu_float__menu {
+  list-style: none;
+  display: grid;
+  padding: 20px 50px 20px 30px;
+  gap: 25px 10px;
+  margin: 0;
+  grid-template-columns: repeat(3, var(--MenuSizeWidthCard));
+  justify-content: space-between;
+  transition: all 0.3s;
+  z-index: 3;
+}
+
+.menu_float__menu a {
+  color: var(--MenuColorFont);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.menu_float__menu a:hover {
+  transform: scale(1.2);
+}
+
+.menu_float__menu a li {
+  width: var(--MenuSizeWidthCard);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.menu_float__menu a li img {
+  width: calc(var(--MenuSizeWidthCard) / 2);
+}
+
+.menu_float__menu a li span {
+  font-size: 0.6em;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
+  color: var(--MenuColorFont);
+}
