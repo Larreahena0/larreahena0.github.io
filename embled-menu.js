@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
 let MenuElement = ''
 let BtnMenuIcon = ''
 let MenuForm = ''
-const baseUrl = 'http://127.0.0.1:5500/menu-transversal'
+const baseUrl = 'https://larreahena0.github.io'
 
 const init = () => {
     MenuElement = document.querySelector('.menu_float')
