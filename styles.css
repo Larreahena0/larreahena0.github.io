@@ -5,12 +5,16 @@
   --MenuColorMenu: #373737;
   --MenuColorFont: #a2a2a2;
   --MenuFontSize: 16px;
-  --MenuSizeButton: 50px;
+  --MenuSizeButtonW: 50px;
+  --MenuSizeButtonH: 50px;
   --MenuSizeWidthCard: 70px;
   --MenuSizeHeightCard: 60px;
   --MenuHeightMenu: 150px;
-  --MenuGapMenu: 20px;
-  --MenuWidthMenu: calc(var(--MenuSizeWidthCard) * 3+ var(--MenuGapMenu) * 2);
+  --MenuGapMenu: 10px;
+  --MenuMarginButton: 30px;
+  --MenuWidthMenu: calc(
+    var(--MenuSizeWidthCard) * 3 + (var(--MenuGapMenu) * 2) + 80px
+  );
 }
 
 body {
@@ -30,22 +34,40 @@ ul {
 
 .menu_float {
   position: fixed;
-  top: 50%;
-  right: 30px;
   display: flex;
   align-items: center;
 }
 
+.menu_float.right-middle {
+  top: 50%;
+  right: var(--MenuMarginButton);
+}
+
+.menu_float.right-bottom {
+  bottom: 10px;
+  right: var(--MenuMarginButton);
+}
+
+.menu_float.right-top {
+  top: 10px;
+  right: var(--MenuMarginButton);
+}
+
+.menu_float.left-top {
+  top: 10px;
+  left: var(--MenuMarginButton);
+}
+
 .menu_float__icon {
-  width: var(--MenuSizeButton);
-  height: var(--MenuSizeButton);
+  width: var(--MenuSizeButtonW);
+  height: var(--MenuSizeButtonH);
   background-color: var(--MenuColorButton);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  color: white;
-  z-index: 4;
+  color: #ffffff;
+  z-index: 102;
   top: 0;
   right: 0;
   margin: 0;
@@ -63,8 +85,8 @@ ul {
 }
 
 .menu_float__icon img {
-  max-width: calc(var(--MenuSizeButton));
-  height: calc(var(--MenuSizeButton) - 20px);
+  max-width: calc(var(--MenuSizeButtonW));
+  height: calc(var(--MenuSizeButtonH) - 20px);
 }
 
 .menu_float__icon:hover {
@@ -73,12 +95,11 @@ ul {
 }
 
 .menu_float__menu {
-  width: var(--MenuWidthMenu);
   background-color: var(--MenuColorMenu);
-  right: calc(var(--MenuSizeButton) / 2);
+  right: calc(var(--MenuSizeButtonW) / 2);
   color: var(--MenuColorFont) !important;
   position: absolute;
-  z-index: 4;
+  z-index: 102;
   border-radius: 10px;
   background: rgb(55, 55, 55);
   background: linear-gradient(
@@ -103,7 +124,7 @@ ul {
   grid-template-columns: repeat(3, var(--MenuSizeWidthCard));
   justify-content: space-between;
   transition: all 0.3s;
-  z-index: 3;
+  z-index: 101;
 }
 
 .menu_float__menu a {
@@ -138,4 +159,41 @@ ul {
   width: 100%;
   text-align: center;
   color: var(--MenuColorFont);
+}
+
+.menu_float.right-bottom .menu_float__menu {
+  bottom: calc(var(--MenuSizeButtonW) / 2);
+}
+
+.menu_float.right-top .menu_float__menu {
+  top: calc(var(--MenuSizeButtonW) / 2);
+}
+
+.menu_float.left-top .menu_float__menu {
+  top: calc(var(--MenuSizeButtonW) / 2);
+  left: calc(var(--MenuSizeButtonW) / 2);
+}
+
+@media (max-width: 400px) {
+  :root {
+    --MenuSizeButtonW: 30px;
+    --MenuSizeButtonH: 70px;
+  }
+  .menu_float.right-middle {
+    right: 0;
+  }
+
+  .menu_float__menu {
+    grid-template-columns: repeat(2, var(--MenuSizeWidthCard));
+  }
+
+  .menu_float__icon {
+    border-radius: 15px 0 0 15px;
+    background-size: 12px;
+  }
+
+  .menu_float__icon.menu_active {
+    background-image: url("img/right-arrow.svg");
+    background-size: 10px;
+  }
 }

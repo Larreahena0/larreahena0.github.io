@@ -20,16 +20,25 @@ let MenuForm = ''
 const baseUrl = 'https://larreahena0.github.io'
 
 const init = () => {
+    let  position = 'right-middle'
     MenuElement = document.querySelector('.menu_float')
     if(!MenuElement) {
+        elementScript = document.querySelector("#menu-transversal")
+        if(elementScript){
+            position = elementScript.getAttribute('position')
+        }
+
         const MenuElement = document.createElement('div')
         MenuElement.classList.add('menu_float')
+        MenuElement.classList.add(position)
+        
         MenuElement.innerHTML = `
         <ul class="menu_float__menu fade_out"></ul>
         <div class="menu_float__icon fade_out"></div>
         `
         document.querySelector('body').append(MenuElement)   
     }
+    
     MenuElement = document.querySelector('.menu_float')
     BtnMenuIcon = MenuElement.querySelector('.menu_float__icon')
     MenuForm = MenuElement.querySelector('.menu_float__menu')
